@@ -1,0 +1,48 @@
+{
+  "name": "inventory-api",
+  "version": "1.0.0",
+  "description": "For the TSS Coding challenge",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "mocha --timeout 10000"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "~1.18.2",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "~4.15.5",
+    "express-validator": "^5.0.1",
+    "geoip-lite": "^1.2.1",
+    "hbs": "^4.0.1",
+    "html": "^1.0.0",
+    "jsonwebtoken": "^8.2.1",
+    "l": "^0.6.0",
+    "localize": "^0.4.7",
+    "lodash": "^4.17.5",
+    "mailjet-fluent-util": "^1.0.2",
+    "moment": "^2.21.0",
+    "mongoose": "^5.0.6",
+    "mongoose-geojson-schema": "^2.1.2",
+    "morgan": "~1.9.0",
+    "path": "^0.12.7",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "swagger-jsdoc": "^1.9.7",
+    "uuid": "^3.2.1",
+    "winston": "^2.4.0",
+    "winston-mongodb": "^4.0.0-rc1"
+  },
+  "author": "Abd-afeez",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "supertest": "^3.1.0"
+  }
+}
