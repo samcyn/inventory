@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-content">
               <div class="icon has-text-centered">
-                <i class="fa fa-user fa-4x"></i>
+                <i class="fa fa-user fa-4x has-text-primary"></i>
               </div>
               <br/>
               <form>
