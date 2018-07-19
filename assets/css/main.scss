@@ -1,6 +1,10 @@
-@import '~bulma/sass/utilities/initial-variables';
-@import '~bulma/sass/utilities/functions';
-// customize styles
-$black: #343434;
+// Set your brand colors
+$purple: #8A4D76;
 
-@import '~bulma';
+// Update Bulma's global variables
+$primary: $purple;
+
+
+
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
