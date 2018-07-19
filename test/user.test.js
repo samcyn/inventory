@@ -10,10 +10,16 @@ describe('User API endpoints integeration Tests', function(){
         'user': {
             'username': 'test-name',
             'password': 'password1234',
-            'email': 'dent4real@gmail.com',
+            'email': 'dent4realop@gmail.com',
             'role':  '5b4fafca821cf474ccf0a221',
-            'phone_number': '08146788113',
+            'phone_number': '08148786013',
             'permissions': [permissions.GLOBAL_USER]
+        }
+    };
+    var login = {
+        'user': {
+            'email': 'dent4realok@gmail.com',
+            'password':  'password1234',
         }
     };
     var update = {
@@ -45,6 +51,19 @@ describe('User API endpoints integeration Tests', function(){
                 expect(res.body.responseCode).to.equal(1);
                 expect(res.body.responseText).to.equal('ok');
                 user.user = res.body.payload
+                done();
+            })
+        })
+    })
+    describe('#POST / user/login', function(){
+        it('should log a user in', function(done){
+            request(app).post('/apis/v1/user/login').send(login)
+            .end(function(err, res){
+                expect(res.statusCode).to.equal(200);
+                expect(res.body).to.be.an('object');
+                expect(res.body.payload).to.be.an('object');
+                expect(res.body.responseCode).to.equal(1);
+                expect(res.body.responseText).to.equal('ok');
                 done();
             })
         })

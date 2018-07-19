@@ -17,10 +17,20 @@
  *       role:
  *         type: string
  *         format: uuid
+ *   Login:
+ *     properties:
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
  *   UserModel:
  *     properties:
  *       user:
  *         $ref: '#/definitions/User'
+ *   LoginModel:
+ *     properties:
+ *       user:
+ *         $ref: '#/definitions/Login'
  *   Role:
  *     properties:
  *       name:
@@ -99,12 +109,6 @@
  *       responseText:
  *         type: string
  *       payload:
- *         type: string
- *   Login:
- *     properties:
- *       email:
- *         type: string
- *       password:
  *         type: string
  *   Token:
  *     properties:
@@ -241,7 +245,7 @@
  *         in: body
  *         required: true
  *         schema:
- *           $ref: '#/definitions/Login'
+ *           $ref: '#/definitions/LoginModel'
  *     responses:
  *       200:
  *         description: Successfully created

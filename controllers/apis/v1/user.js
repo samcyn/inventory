@@ -18,6 +18,18 @@ Ctrl.post = function(req, res){
     });
 };
 
+Ctrl.postLogin = function(req, res){
+    console.log(req.body.user);
+    Processor.login(req.body.user)
+    .then(function(newUser){
+        res.json(Transformer.transformResponse(1, 'ok', newUser));
+    })
+    .catch(function(error){
+        _console.log(error);
+        res.status(400).json(Transformer.transformResponse(0, error.message, error));
+    });
+};
+
 Ctrl.update = function(req, res){
     _console.log(req.body.user);
     Processor.update(req.params.id, req.body.user)
