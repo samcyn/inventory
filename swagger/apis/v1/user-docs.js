@@ -223,7 +223,7 @@
  *       400:
  *         description: You supplied and invalid user field
  *         schema:
- *           $ref: '#/definitions/ErrorObjectString'
+ *           $ref: '#/definitions/ErrorObject'
  */
 
 /**
