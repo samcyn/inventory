@@ -1,8 +1,8 @@
 <template>
   <section class="section">
     <div class="container">
-      <div class="columns  is-multiline is-desktop align-items-center justify-content-between">
-        <div class="column is-mobile-12 is-7">
+      <div class="columns is-multiline align-items-center justify-content-between">
+        <div class="column is-12-mobile is-7-tablet is-7-desktop">
           <div>
             <h1 class="title is-3">Inventory for Business solutions</h1>
             <p>Lorem ipsum[1] dolor sit amet, consectetur adipiscing elit. 
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <div class="column is-4">
+        <div class="column is-12-mobile is-4-tablet is-4-desktop">
           <div class="card">
             <div class="card-content">
               <div class="icon has-text-centered">
