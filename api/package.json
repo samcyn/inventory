@@ -43,6 +43,9 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-    "supertest": "^3.1.0"
+    "supertest": "^3.1.0",
+  },
+  "engines": {
+    "node": "v8.11.3"
   }
 }
