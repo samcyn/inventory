@@ -15,7 +15,8 @@ module.exports = {
   },
   // sass set up
   css: [
-    { src: '~/assets/css/main.scss', lang: 'sass' }
+    { src: '~/assets/css/main.scss', lang: 'sass' },
+    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
   ],
   // router set up
   router: {
