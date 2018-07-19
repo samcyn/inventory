@@ -11,7 +11,7 @@ var swaggerDefinition = {
     version: '1.0.0',
     description: 'Api documentation for the TSS inventory app.',
   },
-  host: 'localhost:3120/apis/v1',
+  host: 'https://mighty-bastion-66032.herokuapp.com/apis/v1',
   basePath: '/',
 };
 
