@@ -93,7 +93,7 @@ export default {
       catch(err){
         this.error = err.response.data.message;
         this.isLoading = false;
-        console.log('error message', err.response.data.message);
+        console.log('error message', {err});
       }
     },
     removeErrorMessage () {
