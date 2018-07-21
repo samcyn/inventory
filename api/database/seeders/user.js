@@ -18,7 +18,7 @@ database.mongoose.connect(database.mongodbConfig.uri, database.mongodbConfig.opt
                 password: 'superduperpassword1234',
                 email: 'dent4real@yahoo.com',
                 role:  '5b4fafca821cf474ccf0a221',
-                phone_number: 08167558013,
+                phone_number: '08167558013',
                 permissions: [permissions.GLOBAL]
             })
             .then(function(todo){
