@@ -30,24 +30,24 @@
                 <i class="fa fa-user fa-4x has-text-primary"></i>
               </div>
               <br/>
-              <form>
+              <form v-on:submit.prevent="login">
                 <div class="field">
                   <label class="label">Email Address</label>
                   <div class="control">
-                    <input class="input is-black is-rounded" type="email" placeholder="Your Email">
+                    <input class="input is-black is-rounded" type="email" placeholder="Your Email" v-model="user.email">
                   </div>
                 </div>
                 <br/>
                 <div class="field">
                   <label class="label">Password</label>
                   <div class="control">
-                    <input class="input is-black is-rounded" type="password" placeholder="Your Password">
+                    <input class="input is-black is-rounded" type="password" placeholder="Your Password" v-model="user.password">
                   </div>
                 </div>
                 
                 <br/>
                 <div class="field is-grouped">
-                  <button class="button is-primary is-rounded is-fullwidth">Sign In</button>
+                  <button type="submit" class="button is-primary is-rounded is-fullwidth"  v-bind:class="{'is-loading': isLoading }">Sign In</button>
                 </div>
               </form>
             </div>
@@ -62,8 +62,43 @@
 
 
 export default {
-  components: {
-    
+  //middleware: 'anonymous',
+  data () {
+    return {
+      user: {},
+      error: null,
+      isLoading: false
+    }
+  },
+  methods: {
+    async login () {
+      // show loader
+      this.isLoading = true;
+      console.log(this.user.email);
+      try{
+        const user = this.user;
+        
+        const response = await this.$axios.$post('user/login', { user });
+        console.log(response.payload.token);
+        
+        this.$store.dispatch('setToken', response.payload.token);
+        // this.$store.dispatch('setUser', response.data.user);
+        // redirect to dashboard
+        this.$router.push({
+          name: 'dashboard'
+        });
+        // hide loader
+        this.isLoading = false;
+      }
+      catch(err){
+        this.error = err.response.data.message;
+        this.isLoading = false;
+        console.log('error message', err.response.data.message);
+      }
+    },
+    removeErrorMessage () {
+      this.error = null;
+    }
   }
 }
 </script>

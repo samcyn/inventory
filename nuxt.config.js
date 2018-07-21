@@ -20,6 +20,7 @@ module.exports = {
   ],
   // router set up
   router: {
+    middleware: ['auth'],
     linkActiveClass: 'active-link'
   },
   /*
@@ -36,7 +37,11 @@ module.exports = {
 
   axios: {
     // proxyHeaders: false
+    baseURL: 'https://mighty-bastion-66032.herokuapp.com/apis/v1/'
   },
+
+  // plugins
+  plugins: [{ src: '~/plugins/persistStore.js', ssr: false}],
   /*
   ** Build configuration
   */
