@@ -3,8 +3,6 @@ let processor = {},
     bcrypt = require('bcrypt-nodejs'),
     jwt = require("jsonwebtoken"),
     User = require(_pathfinder.database).User;
-    // geoip = require('geoip-lite');
-
 
 processor.create = function(user){
     return new Promise(function(resolve, reject){
@@ -52,7 +50,7 @@ processor.login = function(params){
             {
                 reject('Incorrect user credentials.');
             }
-            console.log(user);
+
             if(!bcrypt.compareSync(params.password, user.password))
             {
                 reject('Incorrect user login credentials, please try again.');
@@ -63,13 +61,12 @@ processor.login = function(params){
                 role: user.role,
                 phone_number: user.phone_number
             }
-            console.log('and here');
-            // const token = jwt.sign(user, process.env.SECRET, { expiresIn: process.env.TOKEN_LIFE});
+
             var token = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60 * 48),
                 data: user
             }, process.env.SECRET);
-            // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: process.env.REFRESH_TOKEN_LIFE})
+
             var refreshToken = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60 * 128),
                 data: user

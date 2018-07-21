@@ -10,7 +10,6 @@ UserPermission.canView = function(req, res, next){
     {
         return res.status(200).json(Transformer.transformResponse(0, 'No token found, how did you get to this point?'));
     }
-    console.log(req.decodedToken);
     let permissionList = req.decodedToken.role.permissions;
     let can_view = permissionList.includes(PermissionList.READ_USER) || permissionList.includes(PermissionList.GLOBAL) || permissionList.includes(PermissionList.GLOBAL_USER);
     if(!can_view){
@@ -25,7 +24,7 @@ UserPermission.canCreate = function(req, res, next){
     {
         return res.status(200).json(Transformer.transformResponse(0, 'No token found, how did you get to this point?'));
     }
-    console.log(req.decodedToken);
+
     let permissionList = req.decodedToken.role.permissions;
     let can_view = permissionList.includes(PermissionList.WRITE_USER) || permissionList.includes(PermissionList.GLOBAL) || permissionList.includes(PermissionList.GLOBAL_USER);
     if(!can_view){
