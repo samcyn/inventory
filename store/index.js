@@ -1,7 +1,6 @@
 export const state = () => ({
   user: null,
-  token: null,
-  isUserLoggedIn: false
+  token: null
 })
 
 export const mutations = {
@@ -10,11 +9,6 @@ export const mutations = {
   },
   SET_TOKEN (state, token) {
     state.token = token || null;
-    if (token) {
-      state.isUserLoggedIn = true;
-    } else {
-      state.isUserLoggedIn = false;
-    }
   }
 }
 
@@ -32,6 +26,6 @@ export const actions = {
     commit('SET_TOKEN', token);
   },
   setUser ({commit}, user) {
-    commit('SET_User', user);
+    commit('SET_USER', user);
   }
 }

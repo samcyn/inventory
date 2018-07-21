@@ -3,6 +3,7 @@ import * as Cookies from "js-cookie";
 
 export default ({store}) => {
   createPersistedState({
+    paths: ['user, token'],
     storage: {
       getItem: key => Cookies.get(key),
       // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
@@ -12,3 +13,5 @@ export default ({store}) => {
     }
   })(store);
 }
+
+     

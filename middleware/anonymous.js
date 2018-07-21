@@ -1,5 +1,6 @@
 export default function ({ store, redirect }) {
-  if (!store.getters.isAuthenticated) {
+  if (store.getters.isAuthenticated) {
     return redirect('/dashboard');
   }
+  return Promise.resolve()
 }

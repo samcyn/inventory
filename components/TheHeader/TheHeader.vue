@@ -1,17 +1,33 @@
 <template>
   <header>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-transparent">
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
           </a>
+          <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
 
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
+        <div id="navbarExampleTransparentExample" class="navbar-menu" v-if="$store.getters.isAuthenticated">
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="button is-primary" href="#" v-on:click="logOut">
+                    <span class="icon">
+                      <i class="fa fa-user"></i>
+                    </span>
+                    <span>Log Out</span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -20,7 +36,21 @@
 
 <script>
   export default {
-    name: 'TheHeader'
+    name: 'TheHeader',
+     methods: {
+      logOut () {
+        try {
+          this.$store.dispatch('setToken', null);
+          this.$store.dispatch('setUser', null);
+          //TODO redirect to home page
+          this.$router.push({
+            name: 'index'
+          });
+        } catch(e){
+          console.log(e);
+        }
+      }
+    }
   }
 </script>
 

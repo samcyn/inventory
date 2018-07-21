@@ -20,7 +20,7 @@ module.exports = {
   ],
   // router set up
   router: {
-    middleware: ['auth'],
+    // middleware: ['auth'],
     linkActiveClass: 'active-link'
   },
   /*

@@ -62,7 +62,7 @@
 
 
 export default {
-  //middleware: 'anonymous',
+  middleware: 'anonymous',
   data () {
     return {
       user: {},
@@ -79,10 +79,10 @@ export default {
         const user = this.user;
         
         const response = await this.$axios.$post('user/login', { user });
-        console.log(response.payload.token);
+        // console.log(response.payload);
         
         this.$store.dispatch('setToken', response.payload.token);
-        // this.$store.dispatch('setUser', response.data.user);
+        this.$store.dispatch('setUser', response.payload.user);
         // redirect to dashboard
         this.$router.push({
           name: 'dashboard'
