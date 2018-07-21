@@ -1,5 +1,10 @@
 /**
  * @swagger
+ * securityDefinitions:
+ *   Bearer:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
  * definition:
  *   User:
  *     properties:
@@ -17,10 +22,20 @@
  *       role:
  *         type: string
  *         format: uuid
+ *   Login:
+ *     properties:
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
  *   UserModel:
  *     properties:
  *       user:
  *         $ref: '#/definitions/User'
+ *   LoginModel:
+ *     properties:
+ *       user:
+ *         $ref: '#/definitions/Login'
  *   Role:
  *     properties:
  *       name:
@@ -100,12 +115,6 @@
  *         type: string
  *       payload:
  *         type: string
- *   Login:
- *     properties:
- *       email:
- *         type: string
- *       password:
- *         type: string
  *   Token:
  *     properties:
  *       token:
@@ -118,6 +127,8 @@
  *     tags:
  *       - User
  *     description: Returns all users data
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     responses:
@@ -134,6 +145,8 @@
  *     tags:
  *       - SingleUser
  *     description: Returns a single user object
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -157,6 +170,8 @@
  *     tags:
  *       - SingleUser
  *     description: Delete a single user object
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -180,6 +195,8 @@
  *     tags:
  *       - SingleUser
  *     description: update User's details
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -208,6 +225,8 @@
  *     tags:
  *       - User
  *     description: Registers a new user
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -223,7 +242,7 @@
  *       400:
  *         description: You supplied and invalid user field
  *         schema:
- *           $ref: '#/definitions/ResponseObjectString'
+ *           $ref: '#/definitions/ErrorObject'
  */
 
 /**
@@ -241,7 +260,7 @@
  *         in: body
  *         required: true
  *         schema:
- *           $ref: '#/definitions/Login'
+ *           $ref: '#/definitions/LoginModel'
  *     responses:
  *       200:
  *         description: Successfully created

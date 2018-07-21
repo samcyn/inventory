@@ -17,6 +17,16 @@ Validator.create = function(req, res, next){
         });
 };
 
+Validator.login = function(req, res, next){
+    req.checkBody('user.email', 'invalid email supplied').isEmailV2();
+    req.checkBody('user.password', 'password must be at least 6 digits and less than 50 digits').isName();
+    req.asyncValidationErrors()
+        .then(next)
+        .catch(function(errors){
+            return res.status(400).json(Transformer.transformResponse(0, Transformer.transformExpressValidationErrors(errors)));
+        });
+};
+
 Validator.update = function(req, res, next){
     req.checkParams('id', 'You supplied and invalid Riby Id').isIdNumber();
     req.checkBody('user.username', 'the name supplied is invalid').optional().isName();
