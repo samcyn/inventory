@@ -45,7 +45,6 @@ describe('User API endpoints integeration Tests', function() {
                     expect(res.body.responseCode).to.equal(1);
                     expect(res.body.responseText).to.equal('ok');
                     token = 'Bearer ' + res.body.payload.token;
-                    console.log(token);
                     done();
                 })
         })

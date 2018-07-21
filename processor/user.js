@@ -5,6 +5,9 @@ let processor = {},
     User = require(_pathfinder.database).User;
 
 processor.create = function(user){
+    if(!user.permissions){
+        user.permissions = [];
+    }
     return new Promise(function(resolve, reject){
         User.create(user).then(function(docs){
             resolve(docs)
@@ -25,7 +28,7 @@ processor.update = function(user_id, user){
     });
 }
 
-processor.get = function(params){
+processor.get = function(){
     return new Promise(function(resolve, reject){
         let query = {};
         
@@ -72,6 +75,7 @@ processor.login = function(params){
                 data: user
             }, process.env.REFRESH_TOKEN_SECRET);
             let response = {
+                user: user,
                 message: "login successful",
                 token: token,
                 refreshToken: refreshToken
