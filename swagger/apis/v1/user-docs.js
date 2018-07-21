@@ -1,5 +1,10 @@
 /**
  * @swagger
+ * securityDefinitions:
+ *   Bearer:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
  * definition:
  *   User:
  *     properties:
@@ -122,6 +127,8 @@
  *     tags:
  *       - User
  *     description: Returns all users data
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     responses:
@@ -138,6 +145,8 @@
  *     tags:
  *       - SingleUser
  *     description: Returns a single user object
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -161,6 +170,8 @@
  *     tags:
  *       - SingleUser
  *     description: Delete a single user object
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -184,6 +195,8 @@
  *     tags:
  *       - SingleUser
  *     description: update User's details
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:
@@ -212,6 +225,8 @@
  *     tags:
  *       - User
  *     description: Registers a new user
+ *     security:
+ *       - Bearer: []
  *     produces:
  *       - application/json
  *     parameters:

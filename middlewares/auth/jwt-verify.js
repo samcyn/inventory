@@ -5,7 +5,8 @@ var jwt = require("jsonwebtoken"),
     JWT = {};
 
 JWT.verifyToken = function(req, res, next) {
-    var token = req.body.token || req.query.token || req.headers["x-access-token"];
+    var token = req.body.token || req.query.token || req.headers["x-access-token"] || req.headers['Authorization'] || req.headers['authorization'];
+    token = token ? token.substring(7) : token;
     if(!token)
     {
         return res.status(403).json(Transformer.transformResponse(0, "No token provided"));
@@ -20,7 +21,7 @@ JWT.verifyToken = function(req, res, next) {
             return res.status(401).json(Transformer.transformResponse(0, error.message));
         }
 
-        req.decodedToken = decoded;
+        req.decodedToken = decoded.data;
         next();
     }
 };

@@ -15,7 +15,7 @@ database.mongoose.connect(database.mongodbConfig.uri, database.mongodbConfig.opt
         database.Role
             .insertMany([
                 {
-                    name: 'super_dmin',
+                    name: 'super_admin',
                     display_name: 'Super Admin',
                     description: "The role for The over all admin",
                     permissions: [permissions.GLOBAL],

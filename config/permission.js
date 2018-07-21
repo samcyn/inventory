@@ -18,5 +18,9 @@ module.exports = {
     WRITE_ROLE: 'write_role',
     MODIFY_ROLE: 'modify_role',
 
+    READ_SALE: 'read_sale',
+    WRITE_SALE: 'write_sale',
+
     READ_PERFORMANCE: 'read_performance',
+
 };
