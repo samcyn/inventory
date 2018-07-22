@@ -1,6 +1,6 @@
 <template>
   <aside class="menu" id="rightSideBar">
-    <Menus/>
+    <Menus @toggleSideBar="toggleSideBar"/>
   </aside>
 </template>
 
@@ -12,6 +12,15 @@ export default {
   name: 'TheSidebar',
   components: {
     Menus
+  },
+  methods: {
+    toggleSideBar () {
+      // console.log(this.$router.currentRoute.name);
+      if( this.$router.currentRoute.name === 'index'){
+        return;
+      }
+      this.$emit('toggleSideBar');
+    }
   }
 }
 </script>

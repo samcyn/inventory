@@ -30,6 +30,7 @@
         this.$router.push({
           name: 'index'
         });
+        this.$emit('toggleSideBar');
       }
     }
   }

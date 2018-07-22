@@ -3,14 +3,14 @@
 
     <div class="wrapper">
       <!-- event emitter from TheHeader component -->
-      <TheHeader @initializeSidebar="initializeSidebar"/>
+      <TheHeader @toggleSideBar="toggleSideBar"/>
       <main>
         <nuxt/>
       </main>
 
     </div>
     <!--sidebar for mobile screen -->
-    <TheSidebar/>
+    <TheSidebar @toggleSideBar="toggleSideBar"/>
      
 
   </div>
@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    initializeSidebar (arg) {
+    toggleSideBar (arg) {
       //arg is the navbar component as a whole
       this.navToggle = !this.navToggle;
     }
