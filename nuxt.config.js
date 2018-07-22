@@ -33,6 +33,7 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios',
+    ['nuxt-sass-resources-loader', '@/assets/css/variables.scss']
   ],
 
   axios: {

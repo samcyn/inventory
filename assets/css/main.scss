@@ -1,9 +1,7 @@
-// Set your brand colors
-$purple: #8A4D76;
-
 // Update Bulma's global variables
-$primary: $purple;
+$primary: $brand-color;
 $section-padding: 3rem 0.75rem;
+
 
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
