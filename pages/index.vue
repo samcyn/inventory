@@ -59,7 +59,7 @@
 </template>
 
 <script>
-
+import { setUser } from '~/utils/auth'
 
 export default {
   middleware: 'anonymous',
@@ -74,15 +74,11 @@ export default {
     async login () {
       // show loader
       this.isLoading = true;
-      console.log(this.user.email);
       try{
         const user = this.user;
-        
         const response = await this.$axios.$post('user/login', { user });
         // console.log(response.payload);
-        
-        this.$store.dispatch('setToken', response.payload.token);
-        this.$store.dispatch('setUser', response.payload.user);
+        setUser(response.payload.token, response.payload.user);
         // redirect to dashboard
         this.$router.push({
           name: 'dashboard'

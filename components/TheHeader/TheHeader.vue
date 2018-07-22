@@ -35,13 +35,14 @@
 </template>
 
 <script>
+  import { unsetUser } from '~/utils/auth'
+
   export default {
     name: 'TheHeader',
      methods: {
       logOut () {
         try {
-          this.$store.dispatch('setToken', null);
-          this.$store.dispatch('setUser', null);
+          unsetUser();
           //TODO redirect to home page
           this.$router.push({
             name: 'index'

@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      Welcome to Dashboard <b>@{{$store.getters.loggedUser.name.toUpperCase()}}, {{$store.getters.loggedUser.email}}</b>
+      Welcome to Dashboard <b>@{{  loggedUser ? loggedUser.name : 'friend' }}, {{ loggedUser ? loggedUser.email : 'friend' }}</b>
       <p>More Updates soon to come</p>
     </div>
   </section>
@@ -9,6 +9,7 @@
 
 <script>
 
+import { mapGetters } from 'vuex';
 
 export default {
   middleware: 'authenticated',  
@@ -19,7 +20,11 @@ export default {
   },
   methods: {
    
-  }
+  },
+  computed: mapGetters([
+    'isAuthenticated',
+    'loggedUser'
+  ])
 }
 </script>
 

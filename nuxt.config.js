@@ -20,7 +20,7 @@ module.exports = {
   ],
   // router set up
   router: {
-    // middleware: ['auth'],
+    middleware: ['auth'],
     linkActiveClass: 'active-link'
   },
   /*
@@ -41,7 +41,7 @@ module.exports = {
   },
 
   // plugins
-  plugins: [{ src: '~/plugins/persistStore.js', ssr: false}],
+  //plugins: [{ src: '~/plugins/persistStore.js', ssr: false}],
   /*
   ** Build configuration
   */
