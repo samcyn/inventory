@@ -41,7 +41,8 @@
                 <div class="field">
                   <label class="label">Password</label>
                   <div class="control">
-                    <input class="input is-black is-rounded" type="password" placeholder="Your Password" v-model="user.password">
+                    <input class="input is-black is-rounded" type="password" placeholder="Your Password" v-model="user.password" @keyup="removeErrorMessage">
+                    <p class="help is-danger" v-if="error">{{error ? error : 'mismatch email'}}</p>
                   </div>
                 </div>
                 
@@ -87,7 +88,7 @@ export default {
         this.isLoading = false;
       }
       catch(err){
-        this.error = err.response.data.message;
+        this.error = err.response.data.payload;
         this.isLoading = false;
         console.log('error message', {err});
       }
