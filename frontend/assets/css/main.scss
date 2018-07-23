@@ -1,7 +1,10 @@
 // Update Bulma's global variables
 $primary: $brand-color;
 $section-padding: 3rem 0.75rem;
-
+$file-radius: 0;
+$file-cta-background-color: $primary;
+$file-name-border-width: 0;
+$navbar-box-shadow-color:hsl(0, 70%, 52%) ;
 
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";

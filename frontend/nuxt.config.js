@@ -16,17 +16,18 @@ module.exports = {
   // sass set up
   css: [
     { src: '~/assets/css/main.scss', lang: 'sass' },
-    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
+    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' },
+    { src: 'simple-line-icons/scss/simple-line-icons.scss', lang: 'scss'}
   ],
   // router set up
   router: {
     middleware: ['auth'],
-    linkActiveClass: 'active-link'
+    linkExactActiveClass: 'is-active'
   },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#FE6346' },
 
   /* 
   ** modules

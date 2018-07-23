@@ -1,7 +1,7 @@
 <template>
   <header>
-    <nav class="navbar is-transparent">
-      <div class="container">
+    <nav class="navbar is-white">
+    
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
@@ -17,14 +17,14 @@
           <Menus/>
         </div>
 
-      </div>
+      
     </nav>
   </header>
 </template>
 
 <script>
   import { unsetUser } from '~/utils/auth';
-  import Menus from './Menus';
+  import Menus from '../shared/Menus';
 
   export default {
     name: 'TheHeader',
@@ -51,5 +51,10 @@
 </script>
 
 <style lang="scss">
-  
+  header{
+    // height: 54px;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+  }
 </style>
