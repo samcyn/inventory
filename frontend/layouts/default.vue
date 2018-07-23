@@ -9,9 +9,6 @@
       </main>
 
     </div>
-    <!--sidebar for mobile screen -->
-    <TheSidebar @toggleSideBar="toggleSideBar"/>
-     
 
   </div>
 </template>
