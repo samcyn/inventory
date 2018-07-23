@@ -1,0 +1,20 @@
+// Update Bulma's global variables
+$primary: $brand-color;
+$section-padding: 3rem 0.75rem;
+
+
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
+
+// elements and components needed
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/container.sass";
+@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/elements/title.sass";
+@import "~bulma/sass/components/card.sass";
+@import "~bulma/sass/components/navbar.sass";
+@import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/grid/columns";
+
+
+
