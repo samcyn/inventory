@@ -63,6 +63,7 @@
 import { setUser } from '~/utils/auth'
 
 export default {
+  layout: 'default',
   middleware: 'anonymous',
   data () {
     return {
