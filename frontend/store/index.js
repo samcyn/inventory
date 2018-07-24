@@ -1,6 +1,7 @@
 export const state = () => ({
   user: null,
-  token: null
+  token: null,
+  navOpen: false
 })
 
 export const mutations = {
@@ -9,6 +10,9 @@ export const mutations = {
   },
   SET_TOKEN (state, token) {
     state.token = token || null;
+  },
+  SET_NAVOPEN (state, value) {
+    state.navOpen = value;
   }
 }
 
@@ -18,6 +22,9 @@ export const getters = {
   },
   loggedUser (state) {
     return state.user;
+  },
+  isNavOpen (state) {
+    return state.navOpen;
   }
 }
 
@@ -27,5 +34,8 @@ export const actions = {
   },
   setUser ({commit}, user) {
     commit('SET_USER', user);
+  },
+  setNavOpen({commit}, value) {
+    commit('SET_NAVOPEN', value);
   }
 }

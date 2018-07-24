@@ -45,7 +45,7 @@
         </nuxt-link>
       </li>
     </ul>
-    <Menus @toggleSideBar="toggleSideBar" v-if="showNavbarLinks"/>
+    <Menus v-if="showNavbarLinks"/>
 
     <div class="aside__footer">
       <a class="button is-primary is-fullwidth is-radiusless" v-on:click="logOut">
@@ -76,20 +76,15 @@ export default {
     showNavbarLinks: {type: Boolean, required: true }
   },
   methods: {
-    toggleSideBar () {
-      // console.log(this.$router.currentRoute.name);
-      if( this.$router.currentRoute.name === 'index'){
-        return;
-      }
-      this.$emit('toggleSideBar');
-    },
     logOut () {
       unsetUser();
       //TODO redirect to home page
       this.$router.push({
         name: 'index'
       });
-      this.$emit('toggleSideBar');
+      
+      const navValue = this.$store.getters.isNavOpen;
+      this.$store.dispatch('setNavOpen', !navValue);
     }
   },
   computed: mapGetters([

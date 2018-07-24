@@ -37,30 +37,9 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 
-  @media (max-width: 1024px){
-    .wrapper {
-        -webkit-transform: translate3d(0px, 0, 0);
-        -moz-transform: translate3d(0px, 0, 0);
-        -o-transform: translate3d(0px, 0, 0);
-        -ms-transform: translate3d(0px, 0, 0);
-        transform: translate3d(0px, 0, 0);
-        -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-        -moz-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-        -o-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-        -ms-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-        transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
-        position: relative;
-    }
-
-    .nav-open .wrapper {
-      left: 0;
-      -webkit-transform: translate3d(-#{$sideBarWidth}, 0, 0);
-      -moz-transform: translate3d(-#{$sideBarWidth}, 0, 0);
-      -o-transform: translate3d(-#{$sideBarWidth}, 0, 0);
-      -ms-transform: translate3d(-#{$sideBarWidth}, 0, 0);
-      transform: translate3d(-#{$sideBarWidth}, 0, 0);
-    }
+  main{
+    padding-top: $headerHeight; /* exactly height of header */
   }
 </style>

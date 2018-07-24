@@ -7,4 +7,5 @@ export default function ({ isServer, store, req }) {
   const token = isServer ? getUserTokenFromCookie(req) : getUserTokenFromLocalStorage();  
   store.commit('SET_USER', user);
   store.commit('SET_TOKEN', token);
+  store.commit('SET_NAVOPEN', false);
 }

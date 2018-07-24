@@ -23,7 +23,6 @@
 </template>
 
 <script>
-  import { unsetUser } from '~/utils/auth';
   import Menus from '../shared/Menus';
 
   export default {
@@ -37,14 +36,8 @@
         if( this.$router.currentRoute.name === 'index'){
           return;
         }
-        this.$emit('toggleSideBar');
-      },
-      logOut () {
-        unsetUser();
-        //TODO redirect to home page
-        this.$router.push({
-          name: 'index'
-        });
+        const navValue = this.$store.getters.isNavOpen;
+        this.$store.dispatch('setNavOpen', !navValue);
       }
     }
   }

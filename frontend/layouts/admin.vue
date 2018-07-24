@@ -1,9 +1,9 @@
 <template>
-  <div :class="[navToggle ? 'nav-open' : '' ]">
+  <div :class="[isNavOpen ? 'nav-open' : '' ]">
 
     <div class="wrapper">
       <!-- event emitter from TheHeader component -->
-      <TheHeader @toggleSideBar="toggleSideBar"/>
+      <TheHeader/>
 
       <main>
         <TheSidebar position="aside__left" :showNavbarLinks="false"/>
@@ -14,32 +14,28 @@
 
     </div>
     <!--sidebar for mobile screen -->
-    <TheSidebar @toggleSideBar="toggleSideBar" position="aside__right" :showNavbarLinks="false"/>
-     
+    <TheSidebar position="aside__right" :showNavbarLinks="false"/>
 
+    <!-- show body ovelay only when nav is open -->
+    <BodyOverlay v-if="isNavOpen"/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import TheHeader from '~/components/TheHeader/TheHeader.vue'
 import TheSidebar from '~/components/TheSidebar/TheSidebar.vue'
+import BodyOverlay from '~/components/BodyOverlay'
 
 export default {
   components: {
     TheHeader,
-    TheSidebar
+    TheSidebar,
+    BodyOverlay
   },
-  data () {
-    return {
-      navToggle: false
-    }
-  },
-  methods: {
-    toggleSideBar (arg) {
-      //arg is the navbar component as a whole
-      this.navToggle = !this.navToggle;
-    }
-  }
+  computed: mapGetters([
+    'isNavOpen'
+  ])
 }
 </script>
 <style lang="scss" scoped>
@@ -71,6 +67,7 @@ export default {
       transform: translateX(-#{$sideBarWidth});
     }
     .main-section {
+      padding: $spacing * 2 $spacing;
       width: 100%;
     }
   }
