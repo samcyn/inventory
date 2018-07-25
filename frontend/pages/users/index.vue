@@ -137,7 +137,7 @@ export default {
         // get user datat
         const user = this.formData;
         // post form 
-        const response = await this.$axios.$post('user', { user },  {
+        const response = await this.$axios.$post('user', { user }, {
           headers: { 'Authorization' : 'BEARER ' + token }
         });
         console.log(response.payload);

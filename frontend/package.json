@@ -21,6 +21,7 @@
     "js-cookie": "^2.2.0",
     "nuxt": "^1.0.0",
     "simple-line-icons": "^2.4.1",
+    "vue-moment": "^4.0.0",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {

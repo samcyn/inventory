@@ -43,11 +43,12 @@ module.exports = {
   },
 
   // plugins
-  //plugins: [{ src: '~/plugins/persistStore.js', ssr: false}],
+  plugins: ['~/plugins/vue_moment.js'],
   /*
   ** Build configuration
   */
   build: {
+    vendor: ['vue-moment'],
     /*
     ** Run ESLint on save
     */

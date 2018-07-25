@@ -12,8 +12,8 @@
         <td>{{user.username}}</td>
         <td>{{user.phone_number}}</td>
         <td>{{ user.role ? user.role.display_name : 'user' }}</td>
-        <td>{{user.created_at }}</td>
-        <td><a class="has-text-primary">View</a></td>
+        <td>{{user.created_at  | moment("dddd, MMMM Do YYYY") }}</td>
+        <td><nuxt-link class="has-text-primary" :to="{ name: 'users-userId', params: { userId: user._id }}">View</nuxt-link></td> 
       </tr>
     </tbody>
   </table>
