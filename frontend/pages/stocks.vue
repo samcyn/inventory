@@ -10,10 +10,13 @@ import { mapGetters } from 'vuex';
 
 export default {
   layout: 'admin',
-  middleware: 'authenticated',  
+  middleware: 'authenticated',
+  components: {
+  
+  },  
   data () {
     return {
-     
+      
     }
   },
   methods: {
