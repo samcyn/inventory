@@ -76,7 +76,6 @@
 
 <script>
 
-import { mapGetters } from 'vuex';
 import DataTable from '~/components/shared/DataTable.vue'
 import Modal from '~/components/shared/Modal.vue'
 import Card from '~/components/shared/Card.vue'
@@ -172,10 +171,6 @@ export default {
       else if (errArray.includes('password')) {
         return 2;
       }
-      // switch () {
-
-      // }
-      //return '';
     }
   }
 }
