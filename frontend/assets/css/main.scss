@@ -5,6 +5,8 @@ $file-radius: 0;
 $file-cta-background-color: $primary;
 $file-name-border-width: 0;
 $navbar-box-shadow-color:hsl(0, 70%, 52%) ;
+$pagination-current-background-color: $primary;
+$pagination-current-border-color: $primary;
 
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
@@ -18,6 +20,7 @@ $navbar-box-shadow-color:hsl(0, 70%, 52%) ;
 @import "~bulma/sass/components/card.sass";
 @import "~bulma/sass/components/navbar.sass";
 @import "~bulma/sass/components/modal.sass";
+@import "~bulma/sass/components/pagination.sass";
 @import "~bulma/sass/layout/section.sass";
 @import "~bulma/sass/grid/columns";
 

@@ -11,7 +11,11 @@
         <p>No Users Data</p>
       </Blank>
       <!-- display users info -->
-      <DataTable :head="tableHeading" :users="users" v-else/>
+      <div v-else>
+        <DataTable :head="tableHeading" :users="users"/>
+        <!-- show pagination -->
+        <Pagination @filterTable="filterTable" :page="tableData.page"/>
+      </div>
       <!-- show loader when fetching users, hide loader when done -->
       <Loader v-if="isLoading"/>
     </div>
@@ -81,13 +85,14 @@ import Modal from '~/components/shared/Modal.vue'
 import Card from '~/components/shared/Card.vue'
 import Blank from '~/components/shared/Blank.vue'
 import Loader from '~/components/shared/Loader.vue'
+import Pagination from '~/components/shared/Pagination.vue'
 
 
 export default {
   layout: 'admin',
   middleware: 'authenticated', 
   components: {
-    DataTable, Modal, Card, Blank, Loader
+    DataTable, Modal, Card, Blank, Loader, Pagination
   },
   data () {
     return {
@@ -97,6 +102,10 @@ export default {
       isActive: false,
       formData: {},
       isLoading: false,
+      tableData : {
+        page: 1,
+        limit: 10
+      },
       error: null
     }
   },
@@ -104,13 +113,22 @@ export default {
     try {
       //show loader
       this.isLoading = true;
+
+      //get all users
+     // this.getUsers();
       const token = this.$store.state.token;
+      const page = this.tableData.page;
+      const limit = this.tableData.limit;
       const response = await this.$axios.$get('user', {
-        headers: { 'Authorization': 'BEARER ' + token }
+        headers: { 'Authorization': 'BEARER ' + token },
+        params : { page: page, limit: limit }
       });
+
+      
       const roleResponse = await this.$axios.$get('user/get/roles', {
         headers: { 'Authorization': 'BEARER ' + token }
       });
+
       this.users = response.payload;
       this.roles = roleResponse.payload;
       //hide loader
@@ -128,6 +146,16 @@ export default {
     },
     openModal () {
       this.isActive = true;
+    },
+    async getUsers () {
+      const token = this.$store.state.token;
+      const page = this.tableData.page;
+      const limit = this.tableData.limit;
+      const response = await this.$axios.$get('user', {
+        headers: { 'Authorization': 'BEARER ' + token },
+        params : { page: page, limit: limit }
+      });
+      this.users = response.payload;      
     },
     async addUser (event) {
       try {
@@ -153,6 +181,20 @@ export default {
         console.log(err.response.data.responseText);
         this.error = err.response.data.responseText;
       }
+    },
+    filterTable (value) {
+      if (value === 'prev') {
+        if(this.tableData.page !== 1){
+          this.tableData.page--
+        }
+      }
+      else if (value === 'next') {
+        this.tableData.page++
+      }
+      else {
+        this.tableData.page = value;
+      }
+      this.getUsers();
     }
   },
   computed: {
