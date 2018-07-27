@@ -14,7 +14,7 @@
       <div v-else>
         <DataTable :head="tableHeading" :users="users"/>
         <!-- show pagination -->
-        <Pagination @filterTable="filterTable" :page="tableData.page"/>
+        <Pagination @filterTable="filterTable" :page="tableData.page" :limit="tableData.limit" :count="count"/>
       </div>
       <!-- show loader when fetching users, hide loader when done -->
       <Loader v-if="isLoading"/>
@@ -102,6 +102,7 @@ export default {
       isActive: false,
       formData: {},
       isLoading: false,
+      count: 0,
       tableData : {
         page: 1,
         limit: 10
@@ -124,13 +125,16 @@ export default {
         params : { page: page, limit: limit }
       });
 
-      
+    
       const roleResponse = await this.$axios.$get('user/get/roles', {
         headers: { 'Authorization': 'BEARER ' + token }
       });
 
-      this.users = response.payload;
+      this.users = response.payload.users;
+      //get total  number of users
+      this.count = response.payload.total;
       this.roles = roleResponse.payload;
+      console.log(response);
       //hide loader
       this.isLoading = false;
       //console.log("ROLES", this.roles, this.users);
@@ -155,7 +159,9 @@ export default {
         headers: { 'Authorization': 'BEARER ' + token },
         params : { page: page, limit: limit }
       });
-      this.users = response.payload;      
+      this.users = response.payload.users;
+      //get total  number of users
+      this.count = response.payload.total;      
     },
     async addUser (event) {
       try {
@@ -169,7 +175,9 @@ export default {
         });
         console.log(response.payload);
         // add new user to users arrays
-        this.users.unshift(response.payload);
+        if(this.tableData.page === 1){
+          this.users.unshift(response.payload);
+        }
 
         //reset form 
         this.formData = {};

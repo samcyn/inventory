@@ -1,5 +1,5 @@
 <template>
-  <table class="table is-fullwidth is-hoverable is-striped is-bordered">
+  <table class="table is-fullwidth is-hoverable is-striped is-bordered" >
     <thead>
       <tr>
         <th v-for="(h, index) in head" :key="index">{{h}}</th>
@@ -9,7 +9,7 @@
       <tr v-for="(user, index) in users" :key="index">
         <!-- TODO : probably work on this in the future -->
         <!--<td v-for="(m, i) in picks" :key="i">{{ user[m] || m }} {{i + 1}}</td>-->
-        <td>{{user.username}}</td>
+        <td >{{user.username}}</td>
         <td>{{user.phone_number}}</td>
         <td>{{ user.role ? user.role.display_name : 'user' }}</td>
         <td>{{user.created_at  | moment("dddd, MMMM Do YYYY") }}</td>
