@@ -13,7 +13,7 @@
           <h2 class="card-header-title has-text-primary">{{stock.item ? stock.item.name : 'NA'}}</h2>
           <a class="card-header-icon has-text-primary">
             <span class="icon">
-              <i class="icon-chart"></i>
+              <i class="icon-bag"></i>
             </span>
           </a>
         </div>

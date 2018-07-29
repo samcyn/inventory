@@ -37,7 +37,8 @@
             <button class="button is-primary is-fullwidth" role="button" aria-haspopup="true" aria-controls="dropdown-menu3" @click="toggleDropdown">
               <span>{{ picked || 'Choose Item' }}</span>
               <span class="icon is-small">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <i class="fa fa-angle-down" aria-hidden="true" v-if="!activeDropdown"></i>
+                <i class="fa fa-angle-up" aria-hidden="true" v-else></i>                
               </span>
             </button>
           </div>
@@ -49,7 +50,7 @@
                 </div>
               </div>
               <a  class="dropdown-item" v-for="item in items" :key="item._id">
-                <label :for="item._id"><input type="radio" :id="item._id" :value="item.name" v-model="picked" @change="onItemChangeHandler($event, item._id)"/> {{ item.name }}</label>
+                <label :for="item._id" class="is-block"> {{ item.name }} <input type="radio" class="dropdown-radio" :id="item._id" :value="item.name" v-model="picked" @change="onItemChangeHandler($event, item._id)"/></label>
               </a>
             </div>
           </div>
@@ -127,7 +128,7 @@ export default {
   },  
   data () {
     return {
-      tableHeading: ['#ID', 'Selling Price', 'Cost Price', 'Quantity', 'Created At', 'Expiry Date', 'Action'],
+      tableHeading: ['Items', 'Selling Price', 'Cost Price', 'Quantity', 'Created At', 'Expiry Date', 'Action'],
       stocks: [],
       items: [],
       isActive: false,
@@ -298,6 +299,9 @@ export default {
 <style scoped>
   .dropdown-menu{
     width: 100%;
+  }
+  .dropdown-radio{
+    opacity: 0;
   }
   .stocks__info{
     position: relative;
