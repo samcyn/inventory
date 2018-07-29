@@ -12,7 +12,15 @@
       </Blank>
       <!-- display users info -->
       <div v-else>
-        <DataTable :head="tableHeading" :users="users"/>
+        <DataTable :head="tableHeading">
+          <tr v-for="user in users" :key="user._id">
+            <td >{{user.username}}</td>
+            <td>{{user.phone_number}}</td>
+            <td>{{ user.role ? user.role.display_name : 'user' }}</td>
+            <td>{{user.created_at  | moment("dddd, MMMM Do YYYY") }}</td>
+            <td><nuxt-link class="has-text-primary" :to="{ name: 'users-userId', params: { userId: user._id }}">View</nuxt-link></td> 
+          </tr>
+        </DataTable>
         <!-- show pagination -->
         <Pagination @filterTable="filterTable" :page="tableData.page" :limit="tableData.limit" :count="count"/>
       </div>
@@ -230,5 +238,15 @@ export default {
   .users__info{
     position: relative;
     min-height: 70vh;
+  }
+
+   @media 
+  only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+    td:nth-of-type(1):before { content: "Name"; font-weight: bold; }
+    td:nth-of-type(2):before { content: "Phone"; font-weight: bold; }
+    td:nth-of-type(3):before { content: "Role"; font-weight: bold; }
+    td:nth-of-type(4):before { content: "Date"; font-weight: bold; }
+    td:nth-of-type(5):before { content: "Action"; font-weight: bold; }
   }
 </style>

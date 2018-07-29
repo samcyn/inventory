@@ -1,7 +1,7 @@
 <template>
   <nav class="pagination" role="navigation" aria-label="pagination">
     <a class="pagination-previous" title="This is the first page" :disabled="page === 1" @click="$emit('filterTable', 'prev')">Previous</a>
-    <a class="pagination-next" @click="$emit('filterTable', 'next')" :disabled="page === totalPage">Next page</a>
+    <a class="pagination-next" @click="next" :disabled="page === totalPage">Next page</a>
     <ul class="pagination-list">
       <li>
         <a class="pagination-link" :class="page === 1 ? 'is-current' : ''"  aria-label="Page 1" aria-current="page" @click="$emit('filterTable', 1)">1</a>
@@ -21,6 +21,14 @@
 <script>
   export default {
     props: ['pagination', 'page', 'count', 'limit'],
+    methods: {
+      next () {
+        if ( this.page === this.totalPage) {
+          return;
+        }
+        this.$emit('filterTable', 'next');
+      }
+    },
     computed: {
       totalPage () {
         return Math.ceil(this.count/this.limit);

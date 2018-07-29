@@ -6,15 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(user, index) in users" :key="index">
-        <!-- TODO : probably work on this in the future -->
-        <!--<td v-for="(m, i) in picks" :key="i">{{ user[m] || m }} {{i + 1}}</td>-->
-        <td >{{user.username}}</td>
-        <td>{{user.phone_number}}</td>
-        <td>{{ user.role ? user.role.display_name : 'user' }}</td>
-        <td>{{user.created_at  | moment("dddd, MMMM Do YYYY") }}</td>
-        <td><nuxt-link class="has-text-primary" :to="{ name: 'users-userId', params: { userId: user._id }}">View</nuxt-link></td> 
-      </tr>
+      <slot></slot>
     </tbody>
   </table>
 </template>
@@ -23,13 +15,7 @@
   export default {
     name: 'DataTable',
     props: {
-      head : { type: Array, required: true },
-      users : {type: Array, required: true }
-    },
-    data () {
-      return {
-        // picks : ['username', 'phone_number', 'role', 'created_at', 'View']
-      }
+      head : { type: Array, required: true }
     }
   }
 </script>
@@ -80,14 +66,7 @@
       white-space: nowrap;
     }
     
-    /*
-    Label the data
-    */
-    td:nth-of-type(1):before { content: "Name"; font-weight: bold; }
-    td:nth-of-type(2):before { content: "Phone"; font-weight: bold; }
-    td:nth-of-type(3):before { content: "Role"; font-weight: bold; }
-    td:nth-of-type(4):before { content: "Date"; font-weight: bold; }
-    td:nth-of-type(5):before { content: "Action"; font-weight: bold; }
+    
     // td:nth-of-type(6):before { content: "Secret Alias"; }
     // td:nth-of-type(7):before { content: "Date of Birth"; }
     // td:nth-of-type(8):before { content: "Dream Vacation City"; }

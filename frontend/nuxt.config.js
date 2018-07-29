@@ -43,12 +43,15 @@ module.exports = {
   },
 
   // plugins
-  plugins: ['~/plugins/vue_moment.js'],
+  plugins: [
+    { src: '~/plugins/vue_moment.js', ssr: false }, 
+    { src: '~/plugins/vue_underscore.js', ssr: false }
+  ],
   /*
   ** Build configuration
   */
   build: {
-    vendor: ['vue-moment'],
+    vendor: ['vue-moment', 'vue-underscore'],
     /*
     ** Run ESLint on save
     */
