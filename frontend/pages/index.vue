@@ -5,9 +5,7 @@
         <div class="column is-12-mobile is-7-tablet is-7-desktop">
           <div>
             <h1 class="title is-3">Inventory for Business solutions</h1>
-            <p>Lorem ipsum[1] dolor sit amet, consectetur adipiscing elit. 
-            Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. 
-            Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque. Subscript works as well!</p>
+            <p> A demo of an Inventory App. Work still in progress login to explore what's inside. See you there.</p>
             <br/>
             <div class="field is-grouped">
               <p class="control">
