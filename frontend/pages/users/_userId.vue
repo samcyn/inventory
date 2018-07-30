@@ -85,7 +85,7 @@
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input is-black" type="password" placeholder="Password" v-model="user.password" required>
+              <input class="input is-black" type="password" placeholder="Password" @keyup="keyUpHandler($event)">
             </div>
             <p class="help is-danger" v-if="errorCode === 2">password must be at least 6 digits and less than 50 digits</p>
           </div>
@@ -162,6 +162,10 @@
       openModal () {
         this.modalIsActive = true;
       },
+      keyUpHandler(e) {
+        let value = e.target.value;
+        this.user.password = value;
+      },
       closeModal () {
         this.modalIsActive = false;
       },
@@ -180,6 +184,7 @@
           const response = await this.$axios.$put(`user/${userId}`, { user }, {
             headers: { 'Authorization' : 'BEARER ' + token }
           });
+          this.modalIsActive = false;
         } 
         catch (err) {
           console.log({err});

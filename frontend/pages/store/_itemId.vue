@@ -226,6 +226,7 @@
           const response = await this.$axios.$put(`item/${itemId}`, { item }, {
             headers: { 'Authorization' : 'BEARER ' + token }
           });
+          this.modalIsActive = false;
         } 
         catch (err) {
           console.log({err});
