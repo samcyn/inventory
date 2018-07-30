@@ -4,6 +4,35 @@
       <button class="button is-primary is-pulled-right" @click="openModal">Add Stock</button>
     </div>
     <br/>
+    <div class="stocks__filter">
+      <div class="field-body">
+        <div class="field">
+          <div class="control is-expanded has-icons-left">
+            <div class="select is-black is-fullwidth">
+              <select @change="onChangeHandlerForSelect($event)">
+                <option></option>
+                <option value="0">Out of Stock</option>
+                <option value="1">Fully Stock</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control is-expanded has-icons-left">
+            <div class="select is-black is-fullwidth">
+              <select @change="onChangeHandlerForSort($event)">
+                <option></option>
+                <option value='date'>By Date</option>
+                <option value='name'>By Name</option>
+                <option value='selling'>By Name</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <br/>
     <div class="stocks__info">
       <!-- Show blank if no stocks -->
       <Blank :height="'70vh'" v-if="stocks.length === 0">
@@ -60,14 +89,14 @@
           <div class="field">
             <label class="label">Cost Price</label>
             <div class="control">
-              <input class="input is-black" type="number" placeholder="cost price" v-model.number="formData.costPrice" required disabled>
+              <input class="input is-black" type="number" placeholder="cost price" v-model.number="formData.costPrice" required>
             </div>
           </div>
 
           <div class="field">
             <label class="label">Selling Price</label>
             <div class="control">
-              <input class="input is-black" type="number" placeholder="Selling Price" v-model.number="formData.sellingPrice" required disabled>
+              <input class="input is-black" type="number" placeholder="Selling Price" v-model.number="formData.sellingPrice" required>
             </div>
             <p class="help is-danger" v-if="errorCode === 0 ">This number is already in use</p>
           </div>
@@ -75,7 +104,7 @@
           <div class="field">
             <label class="label">Quantity</label>
             <div class="control">
-              <input class="input is-black" type="number" placeholder="Quantity" v-model.number="formData.quantity" required disabled>
+              <input class="input is-black" type="number" placeholder="Quantity" v-model.number="formData.quantity" required>
             </div>
             <p class="help is-danger" v-if="errorCode === 1">This email is already in use</p>
           </div>
@@ -102,8 +131,6 @@
             </div>
           </div>
 
-         
-         
         </form>
       </Card>
     </Modal>
@@ -137,7 +164,10 @@ export default {
       count: 0,
       tableData : {
         page: 1,
-        limit: 10
+        limit: 10,
+        isOutOfStock: null,
+        isFullyStocked: null,
+        order: null
       },
       error: null,
       activeDropdown: false,
@@ -185,11 +215,12 @@ export default {
     },
     async getstocks () {
       const token = this.$store.state.token;
-      const page = this.tableData.page;
-      const limit = this.tableData.limit;
+      //const page = this.tableData.page;
+     // const limit = this.tableData.limit;
+     const tableData = this.tableData;
       const response = await this.$axios.$get('stock', {
         headers: { 'Authorization': 'BEARER ' + token },
-        params : { page: page, limit: limit }
+        params : tableData
       });
       this.stocks = response.payload.stocks;
       //get total  number of stocks
@@ -207,10 +238,10 @@ export default {
           item: formData._id,
           expiryDate: formData.expiryDate
         }
-        console.log(stock);
+      
         const updatePrice = formData.updatePrice ? 1 : 0;
         // post form 
-        const response = await this.$axios.$post('stock', stock, {
+        const response = await this.$axios.$post('stock', { stock }, {
           headers: { 'Authorization' : 'BEARER ' + token },
           params : { updatePrice }
         });
@@ -221,6 +252,9 @@ export default {
 
         //close modal
         this.isActive = false;
+
+        //get all stocks
+        this.getstocks();
       } 
       catch (err) {
         console.log({err});
@@ -239,6 +273,27 @@ export default {
       else {
         this.tableData.page = value;
       }
+      this.getstocks();
+    },
+    onChangeHandlerForSelect (event) {
+      let value = Number(event.target.selectedOptions[0].value);
+      if (value === 1) {
+        this.tableData.isOutOfStock = null;
+        this.tableData.isFullyStocked = 1;
+      }
+      else if ( value === 0) {
+        this.tableData.isFullyStocked = null;
+        this.tableData.isOutOfStock = 0;
+      }
+      else {
+        this.tableData.isFullyStocked = null;
+        this.tableData.isOutOfStock = null;
+      }
+      this.getstocks();
+    },
+    onChangeHandlerForSort (event) {
+      let value = event.target.selectedOptions[0].value;
+      this.tableData.order = value;
       this.getstocks();
     },
     fetchItems : async function (event) {

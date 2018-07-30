@@ -21,9 +21,9 @@
         </nuxt-link>
       </li>
       <li class="aside__items">
-        <nuxt-link class="aside__links is-flex" :to="{ name: 'categories' }">
+        <nuxt-link class="aside__links is-flex" :to="{ name: 'store' }">
           <i class="icon-organization aside__icons"></i>
-          <p class="aside__text">Categories</p>
+          <p class="aside__text">Store</p>
         </nuxt-link>
       </li>
       <li class="aside__items">

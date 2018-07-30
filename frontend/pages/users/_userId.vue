@@ -18,12 +18,34 @@
           </a>
         </div>
         <div class="content">
-          <p><b>Email</b>: {{user.email}}</p>
-          <p><b>Phone</b>: {{user.phone_number}}</p>
-          <p><b>Role</b>: {{user.role ? user.role.display_name : '' }}</p>
-          <p><b>Role Description</b>: {{ user.role ? user.role.description : '' }}</p>
-          <p><b>Member Since</b>: {{ user.created_at | moment("from") || '' }}</p>
-          <p><b>Last Updated </b>: {{ user.updated_at | moment("from") || '' }}</p>
+          <table class="table is-bordered is-striped  is-hoverable is-fullwidth">
+            <tbody>
+              <tr>
+                <td><b>Email</b></td>
+                <td>{{user.email}}</td>
+              </tr>
+              <tr>
+                <td><b>Phone</b></td>
+                <td>{{user.phone_number}}</td>
+              </tr>
+              <tr>
+                <td><b>Role</b></td>
+                <td>{{user.role ? user.role.display_name : ''}}</td>
+              </tr>
+              <tr>
+                <td><b>Role Description</b></td>
+                <td>{{user.role ? user.role.description : '' }}</td>
+              </tr>
+              <tr>
+                <td><b>Member Since</b></td>
+                <td>{{ user.created_at | moment("from") || '' }}</td>
+              </tr>
+              <tr>
+                <td><b>Update Last</b></td>
+                <td>{{ user.updated_at | moment("from") || '' }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div slot="footer" class="card-footer">
           <a class="card-footer-item has-text-primary" @click="openModal"><i class="icon-pencil"></i> <span>Edit</span> </a> 

@@ -30,27 +30,27 @@
               </tr>
               <tr>
                 <td>Current Stock</td>
-                <td>{{stock.isCurrentStock}}</td>
+                <td>{{ evaluator(stock.isCurrentStock) }}</td>
               </tr>
               <tr>
                 <td>Dismissed</td>
-                <td>{{stock.isDismissed}}</td>
+                <td>{{ evaluator(stock.isDismissed) }}</td>
               </tr>
               <tr>
                 <td>Fully Stocked</td>
-                <td>{{stock.isFullyStocked}}</td>
+                <td>{{ evaluator(stock.isFullyStocked) }}</td>
               </tr>
               <tr>
                 <td>Low on stock</td>
-                <td>{{stock.isLowOnStock}}</td>
+                <td>{{ evaluator(stock.isLowOnStock) }}</td>
               </tr>
               <tr>
                 <td>Out of Stock</td>
-                <td>{{stock.isOutOfStock}}</td>
+                <td>{{ evaluator(stock.isOutOfStock) }}</td>
               </tr>
               <tr>
                 <td>Over Stocked</td>
-                <td>{{stock.isOverStocked}}</td>
+                <td>{{ evaluator(stock.isOverStocked) }}</td>
               </tr>
               <tr>
                 <td>Created</td>
@@ -67,70 +67,12 @@
             </tbody>
           </table>
         </div>
-        <!--
-        <div slot="footer" class="card-footer">
-          <a class="card-footer-item has-text-primary" @click="openModal"><i class="icon-pencil"></i> <span>Edit</span> </a> 
-          <a class="card-footer-item has-text-primary" @click="deleteUser(stock._id)"><i class="icon-trash"></i>  <span>Delete</span></a>         
-        </div>-->
+        
       </Card>
       <!-- show loader when fetching stock, hide loader when done -->
       <Loader v-if="isLoading"/>
     </div>
-    <!-- Modal to edit user -->
-    <!--<Modal :isActive="modalIsActive" @closeModal="closeModal" v-if="!stockExist">
-      <Card width="400px">
-        <form @submit.prevent="editUser($event, stock._id)">
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input class="input is-black" type="text" placeholder="Username" v-model="user.username" required>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Phone</label>
-            <div class="control">
-              <input class="input is-black" type="number" placeholder="Phone Number" v-model="user.phone_number" required>
-            </div>
-            <p class="help is-danger" v-if="errorCode === 0 ">This number is already in use</p>
-          </div>
-
-          <div class="field">
-            <label class="label">Email Address</label>
-            <div class="control">
-              <input class="input is-black" type="email" placeholder="Email Address" v-model="user.email" required>
-            </div>
-            <p class="help is-danger" v-if="errorCode === 1">This email is already in use</p>
-          </div>
-
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input class="input is-black" type="password" placeholder="Password" v-model="user.password" required>
-            </div>
-            <p class="help is-danger" v-if="errorCode === 2">password must be at least 6 digits and less than 50 digits</p>
-          </div>
-         
-          <div class="field">
-            <label class="label">Role</label>
-            <div class="control">
-              <div class="select is-black is-fullwidth">
-                <select v-model="user.role._id" required>
-                  <option v-for="role in roles" :key="role._id" :value="role._id">{{ role.display_name}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button type="submit" class="button is-primary">Submit</button>
-            </div>
-          </div>
-
-         
-        </form>
-      </Card>
-    </Modal>-->
+    
   </div>
 </template>
 
@@ -186,6 +128,9 @@
       },
       closeModal () {
         this.modalIsActive = false;
+      },
+      evaluator(value) {
+        return value === 1 ? 'Yes' : 'No';
       },
       async editUser (event , stockId) {
         console.log("roles", this.user);

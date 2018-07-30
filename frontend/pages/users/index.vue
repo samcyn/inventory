@@ -128,6 +128,7 @@ export default {
       const token = this.$store.state.token;
       const page = this.tableData.page;
       const limit = this.tableData.limit;
+
       const response = await this.$axios.$get('user', {
         headers: { 'Authorization': 'BEARER ' + token },
         params : { page: page, limit: limit }
@@ -142,7 +143,7 @@ export default {
       //get total  number of users
       this.count = response.payload.total;
       this.roles = roleResponse.payload;
-      console.log(response);
+      // console.log(response);
       //hide loader
       this.isLoading = false;
       //console.log("ROLES", this.roles, this.users);
@@ -181,17 +182,16 @@ export default {
         const response = await this.$axios.$post('user', { user }, {
           headers: { 'Authorization' : 'BEARER ' + token }
         });
-        console.log(response.payload);
-        // add new user to users arrays
-        if(this.tableData.page === 1){
-          this.users.unshift(response.payload);
-        }
+      
 
         //reset form 
         this.formData = {};
 
         //close modal
         this.isActive = false;
+
+        //get user
+        this.getUsers();
       } 
       catch (err) {
         console.log(err.response.data.responseText);
