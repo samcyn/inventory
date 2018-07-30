@@ -16,11 +16,13 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "bulma": "^0.7.1",
+    "chart.js": "^2.7.2",
     "cookie": "^0.3.1",
     "font-awesome": "^4.7.0",
     "js-cookie": "^2.2.0",
     "nuxt": "^1.0.0",
     "simple-line-icons": "^2.4.1",
+    "vue-chartjs": "^3.3.2",
     "vue-moment": "^4.0.0",
     "vue-select": "^2.4.0",
     "vue-underscore": "^0.1.4",

@@ -45,7 +45,8 @@ module.exports = {
   // plugins
   plugins: [
     { src: '~/plugins/vue_moment.js', ssr: false }, 
-    { src: '~/plugins/vue_underscore.js', ssr: false }
+    { src: '~/plugins/vue_underscore.js', ssr: false },
+    { src: '~plugins/vue_chart.js', ssr: false }
   ],
   /*
   ** Build configuration
